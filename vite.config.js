@@ -1,8 +1,10 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+  plugins: [vue()], // Asegura que Vite maneje archivos .vue
   server: {
-    host: '0.0.0.0',  // Permite que la app sea accesible desde fuera
-    port: process.env.PORT || 5173, // Usa el puerto asignado por Render
+    host: '0.0.0.0',
+    port: process.env.PORT || 5173
   }
 });
