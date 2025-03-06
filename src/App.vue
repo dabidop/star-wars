@@ -55,10 +55,11 @@ const verDetalle = (item) => {
 <style>
 @font-face {
   font-family: "StarJedi";
-  src: url("./assets/fonts/StarJedi.ttf") format("truetype");
+  src: url("/public/fonts/Starjedi.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
+
 h1 {
   font-family: "StarJedi", sans-serif;
   text-transform: uppercase;
