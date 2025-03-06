@@ -8,10 +8,10 @@ const peliculas = ref([]);
 const imagenesTMDB = {
   "A New Hope": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
   "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
-  "Return of the Jedi": "https://image.tmdb.org/t/p/w500/xd6wXnsoJvqXBC7SpdS9QEp6fpy.jpg",
+  "Return of the Jedi": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
   "The Phantom Menace": "https://image.tmdb.org/t/p/w500/An1nKjXahrChfEbZ3MAE8fsiut1.jpg",
   "Attack of the Clones": "https://image.tmdb.org/t/p/w500/tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-  "Revenge of the Sith": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
+  "Revenge of the Sith": "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE"
 };
 
 const obtenerPeliculas = async () => {
@@ -47,7 +47,7 @@ const irADetalle = (id) => {
       <div v-for="(pelicula, index) in peliculas" :key="index" class="tarjeta" @click="irADetalle(pelicula.id)">
         <img :src="pelicula.imagen" :alt="pelicula.title" class="imagen">
         <h3>{{ pelicula.title }}</h3>
-        <p class="descripcion">{{ pelicula.descripcion }}</p>
+        <p class="descripcion text-center">{{ pelicula.descripcion }}</p>
         <p class="fecha">Estreno: {{ pelicula.release_date }}</p>
       </div>
     </div>
@@ -85,6 +85,10 @@ const irADetalle = (id) => {
   width: 320px; /* Tamaño fijo para mejor ajuste */
 }
 
+h3 {
+  font-family: "StarJedi", sans-serif;
+}
+
 .tarjeta:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.7);
@@ -105,6 +109,8 @@ const irADetalle = (id) => {
   margin-top: 10px;
   text-align: justify;
   padding: 0 10px;
+  font-family: "monserrat";
+
 }
 
 /* Fecha */
