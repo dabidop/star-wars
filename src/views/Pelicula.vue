@@ -2,7 +2,7 @@
   <div class="pelicula-detalle">
     <!-- Imagen Principal -->
     <div class="banner">
-      <img :src="imagenPelicula" :alt="pelicula.title" class="banner-img">
+      <img :src="imagenPelicula" :alt="pelicula.title" class="banner-img" />
       <h1 class="titulo">{{ pelicula.title }}</h1>
     </div>
 
@@ -11,8 +11,13 @@
       <p><strong>Episodio:</strong> {{ pelicula.episode_id }}</p>
       <p><strong>Director:</strong> {{ pelicula.director }}</p>
       <p><strong>Productores:</strong> {{ pelicula.producer }}</p>
-      <p><strong>Fecha de Estreno:</strong> {{ formatDate(pelicula.release_date) }}</p>
-      <p class="sinopsis"><strong>Sinopsis:</strong> {{ pelicula.opening_crawl }}</p>
+      <p>
+        <strong>Fecha de Estreno:</strong>
+        {{ formatDate(pelicula.release_date) }}
+      </p>
+      <p class="sinopsis">
+        <strong>Sinopsis:</strong> {{ pelicula.opening_crawl }}
+      </p>
     </div>
 
     <!-- Secciones Adicionales -->
@@ -20,8 +25,15 @@
       <section v-if="personajes.length">
         <h2>Personajes</h2>
         <div class="grid">
-          <div v-for="personaje in personajes" :key="personaje.name" class="card">
-            <img :src="getImage(personaje.url, 'characters')" :alt="personaje.name">
+          <div
+            v-for="personaje in personajes"
+            :key="personaje.name"
+            class="card"
+          >
+            <img
+              :src="getImage(personaje.url, 'characters')"
+              :alt="personaje.name"
+            />
             <p>{{ personaje.name }}</p>
           </div>
         </div>
@@ -31,7 +43,7 @@
         <h2>Naves Espaciales</h2>
         <div class="grid">
           <div v-for="nave in naves" :key="nave.name" class="card">
-            <img :src="getImage(nave.url, 'starships')" :alt="nave.name">
+            <img :src="getImage(nave.url, 'starships')" :alt="nave.name" />
             <p>{{ nave.name }}</p>
           </div>
         </div>
@@ -41,7 +53,7 @@
         <h2>Planetas</h2>
         <div class="grid">
           <div v-for="planeta in planetas" :key="planeta.name" class="card">
-            <img :src="getImage(planeta.url, 'planets')" :alt="planeta.name">
+            <img :src="getImage(planeta.url, 'planets')" :alt="planeta.name" />
             <p>{{ planeta.name }}</p>
           </div>
         </div>
@@ -51,8 +63,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
   name: "PeliculaDetalle",
@@ -66,32 +78,40 @@ export default {
 
     const obtenerDetalles = async () => {
       try {
-        const resPelicula = await fetch(`https://swapi.dev/api/films/${route.params.id}/`);
+        const resPelicula = await fetch(
+          `https://swapi.dev/api/films/${route.params.id}/`
+        );
         pelicula.value = await resPelicula.json();
 
         // Asignar imagen de la película
         const imagenesTMDB = {
-          "A New Hope": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
-          "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
-          "Return of the Jedi": "https://image.tmdb.org/t/p/w500/xd6wXnsoJvqXBC7SpdS9QEp6fpy.jpg",
-          "The Phantom Menace": "https://image.tmdb.org/t/p/w500/An1nKjXahrChfEbZ3MAE8fsiut1.jpg",
-          "Attack of the Clones": "https://image.tmdb.org/t/p/w500/tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-          "Revenge of the Sith": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
+          "A New Hope":
+            "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+          "The Empire Strikes Back":
+            "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
+          "Return of the Jedi":
+            "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
+          "The Phantom Menace":
+            "https://i0.wp.com/es.rollingstone.com/wp-content/uploads/2024/05/Critica-La-guerra-de-las-galaxias-episodio-I-La-amenaza-fantasma-Star-Wars-Episode-I-The-Phantom-Menace.jpg?fit=1280%2C770&ssl=1",
+          "Attack of the Clones":
+            "https://resizing.flixster.com/M4Tez26iVTjfna1CIWrEXiKn8Ps=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28914_v_h10_at.jpg",
+          "Revenge of the Sith":
+            "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE",
         };
-        imagenPelicula.value = imagenesTMDB[pelicula.value.title] || "/backup-image.jpg";
+        imagenPelicula.value =
+          imagenesTMDB[pelicula.value.title] || "/backup-image.jpg";
 
         // Obtener detalles de personajes, naves y planetas
         personajes.value = await obtenerLista(pelicula.value.characters);
         naves.value = await obtenerLista(pelicula.value.starships);
         planetas.value = await obtenerLista(pelicula.value.planets);
-
       } catch (error) {
         console.error("Error al obtener los detalles:", error);
       }
     };
 
     const obtenerLista = async (urls) => {
-      const promesas = urls.map(url => fetch(url).then(res => res.json()));
+      const promesas = urls.map((url) => fetch(url).then((res) => res.json()));
       return Promise.all(promesas);
     };
 
@@ -109,8 +129,16 @@ export default {
       obtenerDetalles();
     });
 
-    return { pelicula, personajes, naves, planetas, imagenPelicula, formatDate, getImage };
-  }
+    return {
+      pelicula,
+      personajes,
+      naves,
+      planetas,
+      imagenPelicula,
+      formatDate,
+      getImage,
+    };
+  },
 };
 </script>
 
@@ -130,7 +158,7 @@ export default {
 
 .banner-img {
   width: 100%;
-  height: 400px;
+  height: 500px;
   object-fit: cover;
   border-radius: 10px;
   filter: brightness(0.7);

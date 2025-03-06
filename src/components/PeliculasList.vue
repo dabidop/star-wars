@@ -9,8 +9,8 @@ const imagenesTMDB = {
   "A New Hope": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
   "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
   "Return of the Jedi": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
-  "The Phantom Menace": "https://image.tmdb.org/t/p/w500/An1nKjXahrChfEbZ3MAE8fsiut1.jpg",
-  "Attack of the Clones": "https://image.tmdb.org/t/p/w500/tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+  "The Phantom Menace": "https://i0.wp.com/es.rollingstone.com/wp-content/uploads/2024/05/Critica-La-guerra-de-las-galaxias-episodio-I-La-amenaza-fantasma-Star-Wars-Episode-I-The-Phantom-Menace.jpg?fit=1280%2C770&ssl=1",
+  "Attack of the Clones": "https://resizing.flixster.com/M4Tez26iVTjfna1CIWrEXiKn8Ps=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28914_v_h10_at.jpg",
   "Revenge of the Sith": "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE"
 };
 
@@ -104,7 +104,7 @@ h3 {
 
 /* Descripción */
 .descripcion {
-  font-size: 14px;
+  font-size: 18px;
   color: #ddd;
   margin-top: 10px;
   text-align: justify;
@@ -113,9 +113,10 @@ h3 {
 
 }
 
+
 /* Fecha */
 .fecha {
-  font-size: 14px;
+  font-size: 16px;
   color: yellow;
   margin-top: 5px;
 }

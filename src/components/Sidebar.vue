@@ -1,5 +1,5 @@
 <template>
-    <nav class="sidebar">
+    <nav class="sidebar text-center">
       <h2>Explorar</h2>
       <ul>
         <li>
@@ -33,12 +33,13 @@
     top: 0;
     left: 0;
     height: 100vh;
-    color: white;
+    color: white;padding-left: 20px;
   }
   
   .sidebar h2 {
     font-size: 1.5em;
     text-align: center;
+    font-family: "StarJedi";
   }
   
   .sidebar ul {
@@ -48,6 +49,7 @@
   
   .sidebar li {
     margin: 10px 0;
+    font-size: 20px;
   }
   
   .sidebar a {

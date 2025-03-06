@@ -77,6 +77,7 @@ html, body {
   overflow-y: auto;
 }
 
+
 .video-container {
   position: fixed;
   top: 0;
