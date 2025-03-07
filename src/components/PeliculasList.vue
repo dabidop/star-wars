@@ -104,12 +104,12 @@ h3 {
 
 /* Descripción */
 .descripcion {
-  font-size: 18px;
+  font-size: 16px;
   color: #ddd;
   margin-top: 10px;
   text-align: justify;
   padding: 0 10px;
-  font-family: "monserrat";
+  font-family: "Orbitron";
 
 }
 
@@ -119,5 +119,6 @@ h3 {
   font-size: 16px;
   color: yellow;
   margin-top: 5px;
+  font-family: "Orbitron";
 }
 </style>

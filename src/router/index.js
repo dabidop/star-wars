@@ -9,7 +9,8 @@ const routes = [
   { path: "/explore/:categoria", component: Explore },
   { path: "/explore/:categoria/:id", component: DetalleItem },
   { path: "/pelicula/:id", component: Pelicula },
-  { path: "/:catchAll(.*)", redirect: "/" } // Redirige cualquier ruta inválida al Home
+  { path: "/:catchAll(.*)", redirect: "/" },// Redirige cualquier ruta inválida al Home
+  {path: "/films/:id", name: "Pelicula", component: Pelicula}
 ];
 
 const router = createRouter({

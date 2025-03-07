@@ -106,7 +106,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 10%;
+  margin-left: 13%;
+  padding-right: 13%;
 }
 
 .clickable {
