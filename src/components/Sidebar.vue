@@ -62,7 +62,6 @@ const categorias = [
   font-family: "Orbitron", sans-serif;
   display: flex;
   align-items: center;
-  width: 100%;
 }
 
 /* Enlaces */
@@ -82,6 +81,7 @@ const categorias = [
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
   width: 100%;
+  font-size: 19px;
 }
 
 /* Íconos */
