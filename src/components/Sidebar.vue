@@ -4,7 +4,7 @@
     <ul>
       <li>
         <router-link to="/">
-          <i class="fas fa-home"></i> Inicio
+          <i class="fas fa-home"></i> INICIO
         </router-link>
       </li>
       <li v-for="categoria in categorias" :key="categoria.endpoint">
@@ -62,6 +62,7 @@ const categorias = [
   font-family: "Orbitron", sans-serif;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 /* Enlaces */
@@ -80,6 +81,7 @@ const categorias = [
 .sidebar a:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
+  width: 100%;
 }
 
 /* Íconos */
