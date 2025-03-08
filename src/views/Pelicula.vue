@@ -41,40 +41,68 @@
       </section>
 
       <div class="contenedor">
-      <section v-if="naves.length">
-        <h2>Naves</h2>
-        <div class="grid">
+        <section v-if="naves.length">
+          <h2>Naves</h2>
+          <div class="grid">
           <div
             v-for="nave in naves"
             :key="nave.url"
             class="card"
           >
-            <router-link :to="`/explore/starships/${getIdFromUrl(nave.url)}`">
-              <p>{{ nave.name }}</p>
-            </router-link>
+              <router-link :to="`/explore/starships/${getIdFromUrl(nave.url)}`">
+                <p>{{ nave.name }}</p>
+              </router-link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div class="contenedor">
-      <section v-if="planetas.length">
-        <h2>Planetas</h2>
-        <div class="grid">
-          <div
-            v-for="planeta in planetas"
-            :key="planeta.url"
-            class="card"
-          >
-            <router-link :to="`/explore/planets/${getIdFromUrl(planeta.url)}`">
-              <p>{{ planeta.name }}</p>
-            </router-link>
-          </div>
+        <div class="contenedor">
+          <section v-if="planetas.length">
+            <h2>Planetas</h2>
+            <div class="grid">
+              <div v-for="planeta in planetas" :key="planeta.url" class="card">
+                <router-link
+                  :to="`/explore/planets/${getIdFromUrl(planeta.url)}`"
+                >
+                  <p>{{ planeta.name }}</p>
+                </router-link>
+              </div>
+            </div>
+          </section>
+
+          <div class="contenedor">
+          <section v-if="especies.length">
+            <h2>Especies</h2>
+            <div class="grid">
+              <div v-for="especie in especies" :key="especie.url" class="card">
+                <router-link
+                  :to="`/explore/species/${getIdFromUrl(especie.url)}`"
+                >
+                  <p>{{ especie.name }}</p>
+                </router-link>
+              </div>
+            </div>
+          </section>
+
+          <div class="contenedor">
+          <section v-if="vehiculos.length">
+            <h2>Vehículos</h2>
+            <div class="grid">
+              <div v-for="vehiculo in vehiculos" :key="vehiculo.url" class="card">
+                <router-link
+                  :to="`/explore/vehicles/${getIdFromUrl(vehiculo.url)}`"
+                >
+                  <p>{{ vehiculo.name }}</p>
+                </router-link>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -89,6 +117,8 @@ export default {
     const personajes = ref([]);
     const naves = ref([]);
     const planetas = ref([]);
+    const vehiculos = ref([]);
+    const especies = ref([]);
     const imagenPelicula = ref("");
 
     const obtenerDetalles = async () => {
@@ -120,6 +150,8 @@ export default {
         personajes.value = await obtenerLista(pelicula.value.characters);
         naves.value = await obtenerLista(pelicula.value.starships);
         planetas.value = await obtenerLista(pelicula.value.planets);
+        especies.value = await obtenerLista(pelicula.value.species);
+        vehiculos.value = await obtenerLista(pelicula.value.vehicles);
       } catch (error) {
         console.error("Error al obtener los detalles:", error);
       }
@@ -154,6 +186,8 @@ export default {
       personajes,
       naves,
       planetas,
+      especies,
+      vehiculos,
       imagenPelicula,
       formatDate,
       getImage,
@@ -282,5 +316,4 @@ a {
   text-decoration: none;
   color: black;
 }
-
 </style>

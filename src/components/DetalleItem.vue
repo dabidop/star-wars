@@ -44,7 +44,7 @@ const cargarDetalle = async () => {
     const { categoria, id } = route.params;
     const respuesta = await fetch(`https://swapi.dev/api/${categoria}/${id}/`);
     item.value = await respuesta.json();
-    imageUrl.value = obtenerImagen(item.value.name || item.value.title);
+    imageUrl.value = obtenerImagen(item.value.name || item.value.title, categoria);
 
     // Obtener datos de películas con IDs
     if (item.value.films) {
@@ -64,22 +64,48 @@ const cargarDetalle = async () => {
   }
 };
 
-const obtenerImagen = (nombre) => {
+const obtenerImagen = (nombre, categoria) => {
   const imagenes = {
-    "Luke Skywalker": "https://upload.wikimedia.org/wikipedia/en/7/76/Luke_Skywalker.png",
-    "Darth Vader": "https://upload.wikimedia.org/wikipedia/en/7/72/Darth_Vader.png",
-    "Yoda": "https://upload.wikimedia.org/wikipedia/en/7/7f/Yoda_Empire_Strikes_Back.png",
-    "A New Hope": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+    people: {
+      "Luke Skywalker": "https://upload.wikimedia.org/wikipedia/en/7/76/Luke_Skywalker.png",
+      "Darth Vader": "https://upload.wikimedia.org/wikipedia/en/7/72/Darth_Vader.png",
+      "Yoda": "https://upload.wikimedia.org/wikipedia/en/7/7f/Yoda_Empire_Strikes_Back.png",
+      "Leia Organa": "https://upload.wikimedia.org/wikipedia/en/d/d3/Princess_Leia_Star_Wars.png",
+    },
+    starships: {
+      "Millennium Falcon": "https://upload.wikimedia.org/wikipedia/en/3/3e/Millennium_Falcon_TFA_promo_image.png",
+      "X-wing": "https://upload.wikimedia.org/wikipedia/en/3/3e/X-Wing_Fighter_Star_Wars.png",
+      "TIE Advanced x1": "https://upload.wikimedia.org/wikipedia/en/8/82/TIE_Advanced_X1.png",
+    },
+    vehicles: {
+      "Sand-Crawler": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+      "T16skyhopper": "",
+      "AT-AT": "https://upload.wikimedia.org/wikipedia/en/5/5e/AT-AT_Star_Wars.png",
+      "Speeder Bike": "https://upload.wikimedia.org/wikipedia/en/e/ed/Speeder_bike_%28Star_Wars%29.png",
+    },
+    planets: {
+      "Tatooine": "https://upload.wikimedia.org/wikipedia/en/3/3d/Tatooine.png",
+      "Hoth": "https://upload.wikimedia.org/wikipedia/en/8/81/Hoth_planet.png",
+      "Endor": "https://upload.wikimedia.org/wikipedia/en/a/a7/Endor-ROTJ.png",
+    },
+    species: {
+      "Wookiee": "https://upload.wikimedia.org/wikipedia/en/6/6f/Chewbacca_%28Star_Wars%29.png",
+      "Ewok": "https://upload.wikimedia.org/wikipedia/en/e/e6/Ewok.png",
+      "Rodian": "https://upload.wikimedia.org/wikipedia/en/5/5b/Greedo.jpg",
+    },
+    films: {
+      "A New Hope": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+      "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
+      "Return of the Jedi": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
+    }
   };
-  return imagenes[nombre] || "";
+  return imagenes[categoria]?.[nombre] || "";
 };
 
 onMounted(() => {
   cargarDetalle();
 });
 </script>
-
-
 
 <style scoped>
 .detalle-container {
