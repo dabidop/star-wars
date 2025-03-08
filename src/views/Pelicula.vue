@@ -14,7 +14,8 @@
         <p><strong>Director:</strong> {{ pelicula.director }}</p>
         <p><strong>Productores:</strong> {{ pelicula.producer }}</p>
         <p>
-          <strong>Fecha de Estreno:</strong> {{ formatDate(pelicula.release_date) }}
+          <strong>Fecha de Estreno:</strong>
+          {{ formatDate(pelicula.release_date) }}
         </p>
         <p class="sinopsis">
           <strong>Sinopsis:</strong> {{ pelicula.opening_crawl }}
@@ -27,34 +28,53 @@
       <section v-if="personajes.length">
         <h2>Personajes</h2>
         <div class="grid">
-          <div v-for="personaje in personajes" :key="personaje.name" class="card">
-            <!--<img :src="getImage(personaje.url, 'characters')" :alt="personaje.name" />-->
-            <p>{{ personaje.name }}</p>
+          <div
+            v-for="personaje in personajes"
+            :key="personaje.url"
+            class="card"
+          >
+            <router-link :to="`/explore/people/${getIdFromUrl(personaje.url)}`">
+              <p>{{ personaje.name }}</p>
+            </router-link>
           </div>
         </div>
       </section>
 
+      <div class="contenedor">
       <section v-if="naves.length">
-        <h2>Naves Espaciales</h2>
+        <h2>Naves</h2>
         <div class="grid">
-          <div v-for="nave in naves" :key="nave.name" class="card">
-            <!---<img :src="getImage(nave.url, 'starships')" :alt="nave.name" />-->
-            <p>{{ nave.name }}</p>
+          <div
+            v-for="nave in naves"
+            :key="nave.url"
+            class="card"
+          >
+            <router-link :to="`/explore/starships/${getIdFromUrl(nave.url)}`">
+              <p>{{ nave.name }}</p>
+            </router-link>
           </div>
         </div>
       </section>
 
+      <div class="contenedor">
       <section v-if="planetas.length">
         <h2>Planetas</h2>
         <div class="grid">
-          <div v-for="planeta in planetas" :key="planeta.name" class="card">
-            <!--<img :src="getImage(planeta.url, 'planets')" :alt="planeta.name" />-->
-            <p>{{ planeta.name }}</p>
+          <div
+            v-for="planeta in planetas"
+            :key="planeta.url"
+            class="card"
+          >
+            <router-link :to="`/explore/planets/${getIdFromUrl(planeta.url)}`">
+              <p>{{ planeta.name }}</p>
+            </router-link>
           </div>
         </div>
       </section>
     </div>
   </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -73,19 +93,28 @@ export default {
 
     const obtenerDetalles = async () => {
       try {
-        const resPelicula = await fetch(`https://swapi.dev/api/films/${route.params.id}/`);
+        const resPelicula = await fetch(
+          `https://swapi.dev/api/films/${route.params.id}/`
+        );
         pelicula.value = await resPelicula.json();
 
         // Asignar imagen de la película
         const imagenesTMDB = {
-          "A New Hope": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsnvNeCC1yi6u0xAaV9lGfOu6r9g1k2ZBD4Q&s",
-          "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
-          "Return of the Jedi": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
-          "The Phantom Menace": "https://i0.wp.com/es.rollingstone.com/wp-content/uploads/2024/05/Critica-La-guerra-de-las-galaxias-episodio-I-La-amenaza-fantasma-Star-Wars-Episode-I-The-Phantom-Menace.jpg?fit=1280%2C770&ssl=1",
-          "Attack of the Clones": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk3R_6__oL9jEr6sFZ_QsdKchOBn3bpDCbZw&s",
-          "Revenge of the Sith": "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE",
+          "A New Hope":
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsnvNeCC1yi6u0xAaV9lGfOu6r9g1k2ZBD4Q&s",
+          "The Empire Strikes Back":
+            "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
+          "Return of the Jedi":
+            "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
+          "The Phantom Menace":
+            "https://i0.wp.com/es.rollingstone.com/wp-content/uploads/2024/05/Critica-La-guerra-de-las-galaxias-episodio-I-La-amenaza-fantasma-Star-Wars-Episode-I-The-Phantom-Menace.jpg?fit=1280%2C770&ssl=1",
+          "Attack of the Clones":
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk3R_6__oL9jEr6sFZ_QsdKchOBn3bpDCbZw&s",
+          "Revenge of the Sith":
+            "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE",
         };
-        imagenPelicula.value = imagenesTMDB[pelicula.value.title] || "/backup-image.jpg";
+        imagenPelicula.value =
+          imagenesTMDB[pelicula.value.title] || "/backup-image.jpg";
 
         // Obtener detalles de personajes, naves y planetas
         personajes.value = await obtenerLista(pelicula.value.characters);
@@ -99,6 +128,11 @@ export default {
     const obtenerLista = async (urls) => {
       const promesas = urls.map((url) => fetch(url).then((res) => res.json()));
       return Promise.all(promesas);
+    };
+
+    // Extrae el ID de la URL de los elementos (ejemplo: "https://swapi.dev/api/people/1/" -> "1")
+    const getIdFromUrl = (url) => {
+      return url.match(/(\d+)\/$/)[1];
     };
 
     const getImage = (url, type) => {
@@ -115,7 +149,16 @@ export default {
       obtenerDetalles();
     });
 
-    return { pelicula, personajes, naves, planetas, imagenPelicula, formatDate, getImage };
+    return {
+      pelicula,
+      personajes,
+      naves,
+      planetas,
+      imagenPelicula,
+      formatDate,
+      getImage,
+      getIdFromUrl,
+    };
   },
 };
 </script>
@@ -233,6 +276,11 @@ h2 {
 .card {
   background-color: rgb(196, 196, 194);
   padding-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 </style>
