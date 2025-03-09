@@ -11,6 +11,11 @@
         <p v-if="item.height"><strong>Altura:</strong> {{ item.height }} cm</p>
         <p v-if="item.director"><strong>Director:</strong> {{ item.director }}</p>
         <p v-if="item.producer"><strong>Productores:</strong> {{ item.producer }}</p>
+        <p v-if="item.language"><strong>Idioma:</strong> {{ item.language }}</p>
+        <p v-if="item.climate"><strong>Clima:</strong> {{ item.climate }}</p>
+        <p v-if="item.terrain"><strong>Terreno:</strong> {{ item.terrain }}</p>
+        <p v-if="item.manufacturer"><strong>Manufacturado:</strong> {{ item.manufacturer }}</p>
+        <p v-if="item.passengers"><strong>Pasajeros:</strong> {{ item.passengers }}</p>
 
         <h3 v-if="films.length">Películas</h3>
         <ul v-if="films.length" class="peliculas-list">
@@ -132,8 +137,8 @@ const obtenerImagen = (nombre, categoria) => {
       "The Empire Strikes Back": "https://image.tmdb.org/t/p/w500/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
       "Return of the Jedi": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/07/357496-cine-ciencia-ficcion-critica-star-wars-retorno-jedi.png?tf=3840x",
       "The Phantom Menace": "https://upload.wikimedia.org/wikipedia/en/5/5b/Greedo.jpg",
-      "Attack of the Clones": "https://upload.wikimedia.org/wikipedia/en/5/5b/Greedo.jpg",
-      "Revenge of the Sith": "https://upload.wikimedia.org/wikipedia/en/5/5b/Greedo.jpg",
+      "Attack of the Clones": "https://resizing.flixster.com/M4Tez26iVTjfna1CIWrEXiKn8Ps=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28914_v_h10_at.jpg",
+      "Revenge of the Sith": "https://play-lh.googleusercontent.com/FJqj1FGvx6yhFxUQhEWRJYYkKNTn6dKcdMdBdI0t1X7LTaVbtYCmbgZZ3IKPF6QMXvsE",
     }
   };
   return imagenes[categoria]?.[nombre] || "";

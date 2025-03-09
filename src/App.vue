@@ -1,7 +1,9 @@
 <template>
   <div class="app">
+    <!--Sidebar-->
     <Sidebar @seleccionarCategoria="cargarDatos" />
     <div class="video-container">
+      <!--Se reproduce el video en un loop para que no se detenga-->
       <video autoplay loop muted playsinline class="video-fondo">
         <source src="./assets/fondito.mp4" type="video/mp4">
         Tu navegador no soporta videos en HTML5.
